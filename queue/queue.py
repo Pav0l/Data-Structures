@@ -40,7 +40,7 @@ class Queue:
             # print(f'Current node value: {current_node.value}')
 
             # loop through the Node list untill you find a Node which next node is None (TAIL node)
-            while current_node.next_node:
+            while current_node.next_node.value == None:
 
                 # print(f'Next node: {current_node.next_node}')
                 # print(f'Next node value: {current_node.next_node.value}')
