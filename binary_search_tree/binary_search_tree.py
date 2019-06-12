@@ -40,11 +40,24 @@ class BinarySearchTree:
 
 
     def get_max(self):
-        pass
+        # if right child exists => there is a higher value in tree
+        if self.right:
+            # recursively loop until the most rightest node, which will have the highest value
+            return self.right.get_max()
+        # and then return it
+        return self.value
 
 
 # `for_each` performs a traversal of _every_ node in the tree, executing the passed-in callback function on each tree node value.
 # There is a myriad of ways to perform tree traversal; in this case any of them should work.
 
     def for_each(self, cb):
-        pass
+        # run the callback with node value
+        cb(self.value)
+
+        # if right node exist (we're not at the end of the tree), recursively run the fn again passing the cb in
+        if self.right:
+            return self.right.for_each(cb)
+        # same as above
+        if self.left:
+            return self.left.for_each(cb)
