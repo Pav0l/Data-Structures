@@ -25,10 +25,19 @@ class BinarySearchTree:
 # `contains` searches the binary search tree for the input value,
 # returning a boolean indicating whether the value exists in the tree or not.
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
+        elif self.left == None or self.right == None:
+            return False
+        else:
+            if target < self.value:
+                return self.left.contains(target)
+            else:
+                return self.right.contains(target)
 
 
 # `get_max` returns the maximum value in the binary search tree.
+
 
     def get_max(self):
         pass
