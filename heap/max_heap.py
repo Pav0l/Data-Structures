@@ -23,11 +23,12 @@ class Heap:
         self.storage[0], self.storage[-1] = last, heap
         # remove last (previous heap) element
         print(f'*** DELETING {self.storage[-1]} from {self.storage} ***')
-        self.storage.pop()
+        deleted = self.storage.pop()
         print(f'*** THIS IS LEFT {self.storage} ***')
 
         # sift down the tree and swap any items that are not in right order
         self._sift_down(0)
+        return deleted
 
 
 # `get_max` returns the maximum value in the heap _in constant time_.
@@ -147,3 +148,6 @@ a.insert(4)
 a.insert(9)
 a.insert(1)
 print(a.storage)
+
+res = []
+
