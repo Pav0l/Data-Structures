@@ -16,7 +16,6 @@ class Heap:
 # `delete` removes and returns the 'topmost' value from the heap;
 # this method needs to ensure that the heap property is maintained after the topmost element has been removed.
 
-
     def delete(self):
         heap = self.storage[0]
         last = self.storage[-1]
@@ -33,6 +32,7 @@ class Heap:
 
 # `get_max` returns the maximum value in the heap _in constant time_.
 
+
     def get_max(self):
         return self.storage[0]
 
@@ -43,23 +43,28 @@ class Heap:
 # `_bubble_up` moves the element at the specified index "up" the heap
 # by swapping it with its parent if the parent's value is less than the value at the specified index.
     def _bubble_up(self, index):
-        # run "infinite" loop for any index bigger than root element
-        # the while loop will break if parent value is bigger than value at index
-        while index > 0:
-            val_at_index = self.storage[index]
-            parent_val = self.storage[self.get_parent_idx(index)]
-            # check if it's value is bigger than parent
-            if val_at_index > parent_val:
-                # if it is, swap them
-                self.storage[index], self.storage[self.get_parent_idx(
-                    index)] = parent_val, val_at_index
-            # if not, end
-            else:
-                break
+        current_value = self.storage[index]
+
+        parent_idx = self.get_parent_idx(index)
+        parent_value = self.storage[parent_idx]
+        if index == 0:
+            return
+        # check if value at index is bigger than parent value
+        elif parent_value > current_value:
+            # if parent > value
+            # stop
+            return
+        else:
+            # else (value > parent)
+            # swap parent with value
+            self.storage[index], self.storage[parent_idx] = parent_value, current_value
+            # run the function again with parent index
+            self._bubble_up(parent_idx)
 
 
 # `_sift_down` grabs the indices of this element's children and determines which child has a larger value.
 # If the larger child's value is larger than the parent's value, the child element is swapped with the parent.
+
 
     def _sift_down(self, index):
         print(f'Storage: {self.storage}\n')
@@ -131,15 +136,14 @@ class Heap:
             return
 
 
-# a = Heap()
+a = Heap()
 
-# a.insert(3)
-# a.insert(0)
-# a.insert(5)
-# a.insert(7)
-# a.insert(12)
-# a.insert(4)
-# a.insert(9)
-# a.insert(1)
-# print(a.storage)
-# a._sift_down(5)
+a.insert(3)
+a.insert(0)
+a.insert(5)
+a.insert(7)
+a.insert(12)
+a.insert(4)
+a.insert(9)
+a.insert(1)
+print(a.storage)
